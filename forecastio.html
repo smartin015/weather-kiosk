@@ -16,8 +16,18 @@
 			display: none;
 			line-height: 0;
 		}
-		div span {
+		div {
+			line-height: 1.2em !important;
+			font-weight: bold;
+		}
+		#time, div span {
 			color: #FFF !important;
+		}
+		#time {
+			font-weight: bold;
+			font-size: 140px;
+			font-family: Verdana;
+			text-align: center;
 		}
     </style>
   </head>
@@ -30,10 +40,23 @@
     width="100%" 
     src="http://forecast.io/embed/#lat=40.44167&lon=-80&name=Pittsburgh"> 
   </iframe>-->
+  <div id="time"></div>
   <script type="text/javascript" src="http://www.showmyweather.com/weather_widget.php?int=0&type=js&country=us&state=Pennsylvania&city=Pittsburgh&smallicon=0&current=1&forecast=1&background_color=000&color=fff&width=100%&padding=0&border_width=&border_color=000000&font_size=80&font_family=Verdana&showicons=0&measure=F"></script>
-
+  
   <script>
-  setTimeout(function() { location.reload(); }, 1000 * 60 * 15); // refresh every 15 min
+  	update();
+  	setInterval(update, 1000);
+  	setTimeout(function() { location.reload(); }, 1000 * 60 * 15); // refresh every 15 min
+
+  	function update() {
+  		var d = new Date(),
+  			month = d.getMonth()+1,
+  			day = d.getDate(),
+  			hour = d.getHours()+1,
+  			min = d.getMinutes(),
+  			sec = d.getSeconds();
+  		document.getElementById('time').innerHTML = hour + ":" + min;
+  	}
   </script>
   </body>
 </html>
